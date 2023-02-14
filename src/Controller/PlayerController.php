@@ -15,7 +15,7 @@ class PlayerController extends AbstractController
     public function index(EntityManagerInterface $entityManager): Response
     {
         $players = $entityManager->getRepository(Player::class)->findAll();
-        return $this->render("player/index", ["players" => $players]);
+        return $this->render("player/index.html.twig", ["players" => $players]);
     }
 
     public function add(Request $request, EntityManagerInterface $entityManager): Response
@@ -29,14 +29,14 @@ class PlayerController extends AbstractController
             $entityManager->flush();
             return $this->redirectTo("/player");
         }
-        return $this->render("player/form", ["player" => $player]);
+        return $this->render("player/form.html.twig", ["player" => $player]);
     }
 
 
     public function show($id, EntityManagerInterface $entityManager): Response
     {
         $player = $entityManager->getRepository(Player::class)->find($id);
-        return $this->render("player/show", ["player" => $player, "availableGames" => FakeData::games()]);
+        return $this->render("player/show.html.twig", ["player" => $player, "availableGames" => FakeData::games()]);
     }
 
 
@@ -50,7 +50,7 @@ class PlayerController extends AbstractController
             $entityManager->flush();
             return $this->redirectTo("/player");
         }
-        return $this->render("player/form", ["player" => $player]);
+        return $this->render("player/form.html.twig", ["player" => $player]);
     }
 
     public function delete($id, EntityManagerInterface $entityManager): Response
