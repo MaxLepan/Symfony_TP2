@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\Player;
-use App\FakeData;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +35,8 @@ class PlayerController extends AbstractController
     public function show($id, EntityManagerInterface $entityManager): Response
     {
         $player = $entityManager->getRepository(Player::class)->find($id);
-        return $this->render("player/show.html.twig", ["player" => $player, "availableGames" => FakeData::games()]);
+        $games = $entityManager->getRepository(Game::class)->findAll();
+        return $this->render("player/show.html.twig", ["player" => $player, "availableGames" => $games]);
     }
 
 

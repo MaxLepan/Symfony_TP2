@@ -6,7 +6,6 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\Player;
 use App\Entity\Score;
-use App\FakeData;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
